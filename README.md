@@ -4,26 +4,31 @@ Workaround for joystick drift, continuously polls the monitor over DDC/CI, which
 
 Requires DDC/CI enabled on the monitor (System Setup → DDC/CI → On).
 
-## Usage
+## Build
 
 ```powershell
-.\keep_osd_active.ps1              # run now (tray icon: "OSD Hider")
-.\keep_osd_active.ps1 -Install     # run at login
-.\keep_osd_active.ps1 -Uninstall   # remove from login
+.\build.ps1
 ```
 
-- Exit: right-click the tray icon → **Exit**
+Produces `OsdHider.exe` using the C# compiler built into Windows (no installs needed).
+
+## Usage
+
+Double-click `OsdHider.exe`. A tray icon ("OSD Hider") appears.
+
+- Right-click the tray icon → **Start with Windows** to toggle startup (on by default)
+- Right-click the tray icon → **Exit** to quit
 - Only one instance runs at a time
 - Reconnects automatically after sleep or monitor power cycles
-- Re-run `-Install` if the folder is moved
+- If you move the exe, launch it once from the new location to update startup
 
 ## Options
 
-| Parameter     | Default        | Description                              |
-|---------------|----------------|------------------------------------------|
-| `-Display`    | `\\.\DISPLAY2` | Target display                           |
-| `-VcpCode`    | `0x10`         | VCP code to poll (brightness)            |
-| `-IntervalMs` | `0`            | Delay between polls; raise if unstable   |
+| Argument          | Default        | Description                            |
+|-------------------|----------------|----------------------------------------|
+| `--display=`      | `\\.\DISPLAY2` | Target display                         |
+| `--vcp=`          | `0x10`         | VCP code to poll (brightness)          |
+| `--interval=`     | `0`            | Delay between polls in ms; raise if unstable |
 
-Pass options together with `-Install` to save them in the startup shortcut.
+Arguments are saved in the startup entry, e.g. `OsdHider.exe --display=\\.\DISPLAY1`.
 
