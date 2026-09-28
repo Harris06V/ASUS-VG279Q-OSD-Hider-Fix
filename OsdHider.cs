@@ -19,7 +19,7 @@ static class Program
     {
         string display = @"\\.\DISPLAY2";
         byte vcpCode = 0x10;
-        int intervalMs = 0;
+        int intervalMs = 50;
         foreach (string arg in args)
         {
             if (arg.StartsWith("--display=", StringComparison.OrdinalIgnoreCase)) display = arg.Substring(10);

@@ -28,7 +28,7 @@ Double-click `OsdHider.exe`. A tray icon ("OSD Hider") appears.
 |-------------------|----------------|----------------------------------------|
 | `--display=`      | `\\.\DISPLAY2` | Target display                         |
 | `--vcp=`          | `0x10`         | VCP code to poll (brightness)          |
-| `--interval=`     | `0`            | Delay between polls in ms; raise if unstable |
+| `--interval=`     | `50`           | Delay between polls in ms; lower = faster hiding, more CPU |
 
 Arguments are saved in the startup entry, e.g. `OsdHider.exe --display=\\.\DISPLAY1`.
 
